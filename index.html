@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agende Cita</title>
+
+<style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef3f8,
+            #dce8f5
+        );
+
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
+
+.formulario {
+
+    width: 100%;
+    max-width: 420px;
+
+    margin: 25px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.encabezado {
+
+    background:
+        linear-gradient(
+            135deg,
+            #003366,
+            #1565a8
+        );
+
+    color: white;
+
+    padding: 28px 25px;
+
+    text-align: center;
+}
+
+.icono {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.encabezado h1 {
+
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: bold;
+}
+
+.encabezado p {
+
+    margin: 8px 0 0;
+
+    font-size: 13px;
+
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   CUERPO
+===================================================== */
+
+.formulario-body {
+
+    padding: 28px;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.campo {
+
+    margin-bottom: 20px;
+}
+
+.campo label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #003366;
+}
+
+.obligatorio {
+
+    color: #d32f2f;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.campo input {
+
+    width: 100%;
+
+    height: 45px;
+
+    padding: 10px 13px;
+
+    border: 1px solid #d0d7de;
+
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    color: #333;
+
+    background-color: #fff;
+
+    transition: all 0.2s ease;
+}
+
+
+.campo input:focus {
+
+    outline: none;
+
+    border-color: #4CAF50;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(76,175,80,0.12);
+}
+
+
+/* =====================================================
+   RESPONSABLE
+===================================================== */
+
+.responsable-wrapper {
+
+    position: relative;
+}
+
+.responsable-wrapper input {
+
+    padding-left: 42px;
+}
+
+.icono-persona {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 19px;
+
+    color: #003366;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+button {
+
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4CAF50,
+            #388E3C
+        );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        opacity 0.2s;
+}
+
+
+button:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px
+        rgba(0,0,0,0.15);
+}
+
+
+button:disabled {
+
+    background: #999;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =====================================================
+   MENSAJE
+===================================================== */
+
+#mensaje {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    min-height: 22px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.exito {
+
+    color: #2e7d32;
+
+    background-color: #e8f5e9;
+
+    padding: 11px;
+
+    border-radius: 8px;
+}
+
+.error {
+
+    color: #c62828;
+
+    background-color: #ffebee;
+
+    padding: 11px;
+
+    border-radius: 8px;
+}
+
+
+/* =====================================================
+   PIE
+===================================================== */
+
+.pie-formulario {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    font-size: 11px;
+
+    color: #777;
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 500px) {
+
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .formulario {
+        margin: 15px;
+    }
+
+    .formulario-body {
+        padding: 22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="formulario">
+
+
+    <!-- =================================================
+         ENCABEZADO
+    ================================================== -->
+
+    <div class="encabezado">
+
+        <div class="icono">
+            📅
+        </div>
+
+        <h1>
+            Agende una cita
+        </h1>
+
+        <p>
+            Complete la información para registrar
+            su cita en la agenda.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         FORMULARIO
+    ================================================== -->
+
+    <div class="formulario-body">
+
+
+        <!-- FECHA -->
+
+        <div class="campo">
+
+            <label for="fecha">
+
+                <span class="obligatorio">*</span>
+                FECHA DE TAREA
+
+            </label>
+
+            <input
+                type="date"
+                id="fecha"
+                required>
+
+        </div>
+
+
+        <!-- HORA -->
+
+        <div class="campo">
+
+            <label for="hora">
+
+                <span class="obligatorio">*</span>
+                HORA
+
+            </label>
+
+            <input
+                type="time"
+                id="hora"
+                required>
+
+        </div>
+
+
+        <!-- RESPONSABLE -->
+
+        <div class="campo">
+
+            <label for="responsable">
+
+                <span class="obligatorio">*</span>
+                RESPONSABLE
+
+            </label>
+
+
+            <div class="responsable-wrapper">
+
+                <span class="icono-persona">
+                    👤
+                </span>
+
+                <input
+                    type="text"
+                    id="responsable"
+                    value="Fernando Marmolejo Urriago"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAREA -->
+
+        <div class="campo">
+
+            <label for="tarea">
+
+                <span class="obligatorio">*</span>
+                TAREA
+
+            </label>
+
+            <input
+                type="text"
+                id="tarea"
+                placeholder="Escriba el motivo de la cita"
+                required>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button
+            id="btnEnviar"
+            onclick="enviarCita()">
+
+            📅 ENVIAR CITA
+
+        </button>
+
+
+        <!-- MENSAJE -->
+
+        <div id="mensaje"></div>
+
+
+        <div class="pie-formulario">
+
+            Los campos marcados con *
+            son obligatorios.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   ENVIAR CITA
+===================================================== */
+
+async function enviarCita() {
+
+
+    /* -------------------------------------------------
+       OBTENER DATOS
+    ------------------------------------------------- */
+
+    const fecha =
+        document
+            .getElementById("fecha")
+            .value;
+
+
+    const hora =
+        document
+            .getElementById("hora")
+            .value;
+
+
+    const responsable =
+        document
+            .getElementById("responsable")
+            .value
+            .trim();
+
+
+    const tarea =
+        document
+            .getElementById("tarea")
+            .value
+            .trim();
+
+
+    const mensaje =
+        document
+            .getElementById("mensaje");
+
+
+    const boton =
+        document
+            .getElementById("btnEnviar");
+
+
+    /* -------------------------------------------------
+       VALIDAR
+    ------------------------------------------------- */
+
+    if (
+        !fecha ||
+        !hora ||
+        !responsable ||
+        !tarea
+    ) {
+
+        mensaje.className =
+            "error";
+
+        mensaje.innerHTML =
+            "⚠️ Complete todos los campos.";
+
+        return;
+
+    }
+
+
+    /* -------------------------------------------------
+       ESTADO ENVIANDO
+    ------------------------------------------------- */
+
+    boton.disabled = true;
+
+    boton.innerHTML =
+        "⏳ REGISTRANDO CITA...";
+
+
+    mensaje.className = "";
+
+    mensaje.innerHTML =
+        "Enviando información...";
+
+
+    /* -------------------------------------------------
+       DATOS PARA POWER AUTOMATE
+    ------------------------------------------------- */
+
+    const datos = {
+
+        fecha: fecha,
+
+        hora: hora,
+
+        responsable: responsable,
+
+        tarea: tarea
+
+    };
+
+
+    try {
+
+
+        /* =============================================
+           POWER AUTOMATE
+
+           MISMO LINK QUE TENÍAS
+        ============================================= */
+
+        const respuesta =
+            await fetch(
+
+                "https://defaultb0364bc53bfe4864a2ed3ebb68c608.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/13/workflows/7b179c0376af4fd5bb6c9ff23b949859/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=XKrzIRP0OBFmvlYzcSU83qO2uovsZaEikW7205L1fCo",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(datos)
+
+                }
+
+            );
+
+
+        /* ------------------------------------------------
+           ÉXITO
+        ------------------------------------------------ */
+
+        if (respuesta.ok) {
+
+
+            mensaje.className =
+                "exito";
+
+
+            mensaje.innerHTML =
+                "✓ Cita registrada correctamente.";
+
+
+            /* LIMPIAR */
+
+            document
+                .getElementById("fecha")
+                .value = "";
+
+
+            document
+                .getElementById("hora")
+                .value = "";
+
+
+            document
+                .getElementById("tarea")
+                .value = "";
+
+
+            /*
+
+              RESPONSABLE NO SE BORRA.
+
+              Permanece:
+
+              Fernando Marmolejo Urriago
+
+            */
+
+        }
+
+
+        /* ------------------------------------------------
+           ERROR
+        ------------------------------------------------ */
+
+        else {
+
+            mensaje.className =
+                "error";
+
+            mensaje.innerHTML =
+                "❌ No se pudo registrar la cita.";
+
+        }
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Error:",
+            error
+        );
+
+
+        mensaje.className =
+            "error";
+
+
+        mensaje.innerHTML =
+            "❌ Error de conexión con Power Automate.";
+
+    }
+
+
+    /* -------------------------------------------------
+       RESTAURAR BOTÓN
+    ------------------------------------------------- */
+
+    boton.disabled = false;
+
+    boton.innerHTML =
+        "📅 ENVIAR CITA";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
