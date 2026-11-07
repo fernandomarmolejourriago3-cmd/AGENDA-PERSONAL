@@ -1,248 +1,823 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portal de Disponibilidad</title>
+<title>Agende Cita</title>
 
 <style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #eaf0f7, #dce6f1);
-    color: #183153;
+    margin: 0;
     min-height: 100vh;
-    padding: 30px 20px;
-}
 
-/* CONTENEDOR PRINCIPAL */
-.portal {
-    max-width: 1500px;
-    margin: auto;
-    background: #ffffff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 12px 40px rgba(20, 48, 80, 0.15);
-    border: 1px solid #dce5ef;
-}
-
-/* ENCABEZADO */
-.header {
-    background: linear-gradient(120deg, #102f50, #1d5685);
-    padding: 28px 35px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.header-info h1 {
-    font-size: 25px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.header-info p {
-    font-size: 13px;
-    color: #c9dced;
-    letter-spacing: 0.5px;
-}
-
-.header-icon {
-    width: 55px;
-    height: 55px;
-    background: rgba(255,255,255,0.13);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 27px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef3f8,
+            #dce8f5
+        );
+
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
-/* BARRA INFORMATIVA */
-.info-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background: #f4f7fb;
-    border-bottom: 1px solid #e2eaf2;
-    flex-wrap: wrap;
-    gap: 12px;
-}
 
-.info-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: #385675;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-}
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
 
-.status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #56718d;
-}
+.formulario {
 
-.status-dot {
-    width: 9px;
-    height: 9px;
-    background: #24ad75;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(36,173,117,0.12);
-}
+    width: 100%;
+    max-width: 420px;
 
-/* CUERPO DEL INFORME */
-.report-section {
-    padding: 22px;
-    background: #f0f4f9;
-}
+    margin: 25px;
 
-.report-container {
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #dbe4ee;
+    background: white;
+
+    border-radius: 18px;
+
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(30, 60, 90, 0.07);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.encabezado {
+
+    background:
+        linear-gradient(
+            135deg,
+            #003366,
+            #1565a8
+        );
+
+    color: white;
+
+    padding: 28px 25px;
+
+    text-align: center;
+}
+
+.icono {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.encabezado h1 {
+
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: bold;
+}
+
+.encabezado p {
+
+    margin: 8px 0 0;
+
+    font-size: 13px;
+
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   CUERPO
+===================================================== */
+
+.formulario-body {
+
+    padding: 28px;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.campo {
+
+    margin-bottom: 20px;
+}
+
+.campo label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #003366;
+}
+
+.obligatorio {
+
+    color: #d32f2f;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.campo input {
+
+    width: 100%;
+
+    height: 45px;
+
+    padding: 10px 13px;
+
+    border: 1px solid #d0d7de;
+
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    color: #333;
+
+    background-color: #fff;
+
+    transition: all 0.2s ease;
+}
+
+
+.campo input:focus {
+
+    outline: none;
+
+    border-color: #4CAF50;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(76,175,80,0.12);
+}
+
+
+/* =====================================================
+   RESPONSABLE
+===================================================== */
+
+.responsable-wrapper {
+
     position: relative;
 }
 
-/* IFRAME RESPONSIVO */
-.report-container iframe {
-    display: block;
+.responsable-wrapper input {
+
+    padding-left: 42px;
+}
+
+.icono-persona {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 19px;
+
+    color: #003366;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+button {
+
     width: 100%;
-    height: 850px;
+
+    margin-top: 8px;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4CAF50,
+            #388E3C
+        );
+
+    color: white;
+
     border: none;
-    background: white;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        opacity 0.2s;
 }
 
-/* PIE DE PÁGINA */
-.footer {
-    padding: 16px 30px;
-    background: #ffffff;
-    border-top: 1px solid #e8edf3;
+
+button:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px
+        rgba(0,0,0,0.15);
+}
+
+
+button:disabled {
+
+    background: #999;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+
+/* =====================================================
+   BOTÓN PARA CONSULTAR DISPONIBILIDAD
+===================================================== */
+
+.btn-disponibilidad {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 11px;
+    width: 100%;
+    min-height: 54px;
+    margin: 0 0 25px;
+    padding: 13px 18px;
+    border: 1px solid #b8d7f2;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #edf7ff, #dceeff);
+    color: #064578;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    box-shadow: 0 5px 14px rgba(0, 67, 120, .09);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
-.footer span {
+.btn-disponibilidad:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #dceeff, #c9e3fb);
+    box-shadow: 0 8px 18px rgba(0, 67, 120, .16);
+}
+
+.btn-disponibilidad:focus-visible {
+    outline: 3px solid rgba(21, 101, 168, .3);
+    outline-offset: 3px;
+}
+
+.btn-disponibilidad .icono-disponibilidad {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border-radius: 9px;
+    background: #0b5b96;
+    color: #fff;
+    font-size: 17px;
+}
+
+.btn-disponibilidad .texto-disponibilidad {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+}
+
+.btn-disponibilidad small {
+    color: #52718b;
     font-size: 11px;
-    color: #8192a5;
+    font-weight: 400;
 }
 
-.footer strong {
-    color: #1d5685;
+/* =====================================================
+   MENSAJE
+===================================================== */
+
+#mensaje {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    min-height: 22px;
+
+    font-size: 14px;
+
+    font-weight: bold;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+.exito {
+
+    color: #2e7d32;
+
+    background-color: #e8f5e9;
+
+    padding: 11px;
+
+    border-radius: 8px;
+}
+
+.error {
+
+    color: #c62828;
+
+    background-color: #ffebee;
+
+    padding: 11px;
+
+    border-radius: 8px;
+}
+
+
+/* =====================================================
+   PIE
+===================================================== */
+
+.pie-formulario {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    font-size: 11px;
+
+    color: #777;
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 500px) {
 
     body {
-        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
     }
 
-    .header {
+    .formulario {
+        margin: 15px;
+    }
+
+    .formulario-body {
         padding: 22px;
     }
 
-    .header-info h1 {
-        font-size: 20px;
-    }
-
-    .report-section {
-        padding: 10px;
-    }
-
-    .report-container iframe {
-        height: 700px;
-    }
-
-    .footer {
-        padding: 15px;
-    }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="portal">
 
-    <!-- ENCABEZADO -->
-    <header class="header">
+<div class="formulario">
 
-        <div class="header-info">
-            <h1>PORTAL DE DISPONIBILIDAD</h1>
-            <p>CONSULTA Y GESTIÓN DE AGENDA · SISTEMA DE RESERVAS</p>
-        </div>
 
-        <div class="header-icon">
+    <!-- =================================================
+         ENCABEZADO
+    ================================================== -->
+
+    <div class="encabezado">
+
+        <div class="icono">
             📅
         </div>
 
-    </header>
+        <h1>
+            Agende una cita
+        </h1>
 
-    <!-- INFORMACIÓN -->
-    <div class="info-bar">
-
-        <div class="info-label">
-            📊 Panel de disponibilidad mensual
-        </div>
-
-        <div class="status">
-            <span class="status-dot"></span>
-            Visualización del informe
-        </div>
+        <p>
+            Complete la información para registrar
+            su cita en la agenda.
+        </p>
 
     </div>
 
-    <!-- INFORME POWER BI -->
-    <main class="report-section">
 
-        <div class="report-container">
+    <!-- =================================================
+         FORMULARIO
+    ================================================== -->
 
-            <iframe
-                title="DISPONIBILIDAD"
-                src="https://app.powerbi.com/reportEmbed?reportId=5790d42c-f97d-47f5-ba5d-2772f409ed38&autoAuth=true&ctid=b0364bc5-3bfe-4864-a2ed-3ebb68c608ad"
-                frameborder="0"
-                allowFullScreen="true">
-            </iframe>
+    <div class="formulario-body">
+
+
+        <!-- ACCESO A DISPONIBILIDAD -->
+        <a
+            class="btn-disponibilidad"
+            href="https://fernandomarmolejourriago3-cmd.github.io/disponibilidad/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir la página de disponibilidad en una nueva pestaña">
+            <span class="icono-disponibilidad" aria-hidden="true">🗓️</span>
+            <span class="texto-disponibilidad">
+                CONSULTAR DISPONIBILIDAD
+                <small>Ver fechas y horarios disponibles</small>
+            </span>
+            <span aria-hidden="true" style="margin-left:auto;font-size:20px;">↗</span>
+        </a>
+
+        <!-- FECHA -->
+
+        <div class="campo">
+
+            <label for="fecha">
+
+                <span class="obligatorio">*</span>
+                FECHA DE TAREA
+
+            </label>
+
+            <input
+                type="date"
+                id="fecha"
+                required>
 
         </div>
 
-    </main>
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="footer">
+        <!-- HORA -->
 
-        <span>
-            Sistema de consulta de disponibilidad
-        </span>
+        <div class="campo">
 
-        <span>
-            Desarrollado con <strong>Power BI</strong>
-        </span>
+            <label for="hora">
 
-    </footer>
+                <span class="obligatorio">*</span>
+                HORA
+
+            </label>
+
+            <input
+                type="time"
+                id="hora"
+                step="1800"
+                required>
+
+        </div>
+
+
+        <!-- RESPONSABLE -->
+
+        <div class="campo">
+
+            <label for="responsable">
+
+                <span class="obligatorio">*</span>
+                RESPONSABLE
+
+            </label>
+
+
+            <div class="responsable-wrapper">
+
+                <span class="icono-persona">
+                    👤
+                </span>
+
+                <input
+                    type="text"
+                    id="responsable"
+                    value="Fernando Marmolejo Urriago"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAREA -->
+
+        <div class="campo">
+
+            <label for="tarea">
+
+                <span class="obligatorio">*</span>
+                TAREA
+
+            </label>
+
+            <input
+                type="text"
+                id="tarea"
+                placeholder="Escriba el motivo de la cita"
+                required>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button
+            id="btnEnviar"
+            onclick="enviarCita()">
+
+            📅 ENVIAR CITA
+
+        </button>
+
+
+        <!-- MENSAJE -->
+
+        <div id="mensaje"></div>
+
+
+        <div class="pie-formulario">
+
+            Los campos marcados con *
+            son obligatorios.
+
+        </div>
+
+
+    </div>
 
 </div>
 
+
+<script>
+
+
+/* =====================================================
+   ENVIAR CITA
+===================================================== */
+
+async function enviarCita() {
+
+
+    /* -------------------------------------------------
+       OBTENER DATOS
+    ------------------------------------------------- */
+
+    const fecha =
+        document
+            .getElementById("fecha")
+            .value;
+
+
+    const hora =
+        document
+            .getElementById("hora")
+            .value;
+
+
+    const responsable =
+        document
+            .getElementById("responsable")
+            .value
+            .trim();
+
+
+    const tarea =
+        document
+            .getElementById("tarea")
+            .value
+            .trim();
+
+
+    const mensaje =
+        document
+            .getElementById("mensaje");
+
+
+    const boton =
+        document
+            .getElementById("btnEnviar");
+
+
+    /* -------------------------------------------------
+       VALIDAR
+    ------------------------------------------------- */
+
+    if (
+        !fecha ||
+        !hora ||
+        !responsable ||
+        !tarea
+    ) {
+
+        mensaje.className =
+            "error";
+
+        mensaje.innerHTML =
+            "⚠️ Complete todos los campos.";
+
+        return;
+
+    }
+
+
+    /* -------------------------------------------------
+       ESTADO ENVIANDO
+    ------------------------------------------------- */
+
+    boton.disabled = true;
+
+    boton.innerHTML =
+        "⏳ REGISTRANDO CITA...";
+
+
+    mensaje.className = "";
+
+    mensaje.innerHTML =
+        "Enviando información...";
+
+
+    /* -------------------------------------------------
+       DATOS PARA POWER AUTOMATE
+    ------------------------------------------------- */
+
+    const datos = {
+
+        fecha: fecha,
+
+        hora: hora,
+
+        responsable: responsable,
+
+        tarea: tarea
+
+    };
+
+
+    try {
+
+
+        /* =============================================
+           POWER AUTOMATE
+
+           MISMO LINK QUE TENÍAS
+        ============================================= */
+
+        const respuesta =
+            await fetch(
+
+                "https://defaultb0364bc53bfe4864a2ed3ebb68c608.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/13/workflows/7b179c0376af4fd5bb6c9ff23b949859/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=XKrzIRP0OBFmvlYzcSU83qO2uovsZaEikW7205L1fCo",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(datos)
+
+                }
+
+            );
+
+
+        /* ------------------------------------------------
+           ÉXITO
+        ------------------------------------------------ */
+
+        if (respuesta.ok) {
+
+
+            mensaje.className =
+                "exito";
+
+
+            mensaje.innerHTML =
+                "✓ Acabas de Crear una Notificación de Cita.";
+
+
+            /* LIMPIAR */
+
+            document
+                .getElementById("fecha")
+                .value = "";
+
+
+            document
+                .getElementById("hora")
+                .value = "";
+
+
+            document
+                .getElementById("tarea")
+                .value = "";
+
+
+            /*
+
+              RESPONSABLE NO SE BORRA.
+
+              Permanece:
+
+              Fernando Marmolejo Urriago
+
+            */
+
+        }
+
+
+        /* ------------------------------------------------
+           ERROR
+        ------------------------------------------------ */
+
+        else {
+
+            mensaje.className =
+                "error";
+
+            mensaje.innerHTML =
+                "❌ No se pudo registrar la cita.";
+
+        }
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Error:",
+            error
+        );
+
+
+        mensaje.className =
+            "error";
+
+
+        mensaje.innerHTML =
+            "❌ Error de conexión con Power Automate.";
+
+    }
+
+
+    /* -------------------------------------------------
+       RESTAURAR BOTÓN
+    ------------------------------------------------- */
+
+    boton.disabled = false;
+
+    boton.innerHTML =
+        "📅 ENVIAR CITA";
+
+}
+
+</script>
+
+
 </body>
+
 </html>
