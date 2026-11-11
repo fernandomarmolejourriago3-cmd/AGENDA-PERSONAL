@@ -213,6 +213,43 @@ body {
 
 
 /* =====================================================
+   AYUDA PARA EL CAMPO TAREA
+===================================================== */
+
+.ayuda-tarea {
+
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    color: #52718b;
+
+    line-height: 1.5;
+}
+
+.ejemplo-tarea {
+
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 5px 9px;
+
+    background: #edf7ff;
+
+    color: #064578;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
    BOTÓN
 ===================================================== */
 
@@ -270,7 +307,6 @@ button:disabled {
 
     box-shadow: none;
 }
-
 
 
 /* =====================================================
@@ -334,6 +370,7 @@ button:disabled {
     font-size: 11px;
     font-weight: 400;
 }
+
 
 /* =====================================================
    MENSAJE
@@ -453,19 +490,34 @@ button:disabled {
 
 
         <!-- ACCESO A DISPONIBILIDAD -->
+
         <a
             class="btn-disponibilidad"
             href="https://fernandomarmolejourriago3-cmd.github.io/disponibilidad/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Abrir la página de disponibilidad en una nueva pestaña">
-            <span class="icono-disponibilidad" aria-hidden="true">🗓️</span>
-            <span class="texto-disponibilidad">
-                CONSULTAR DISPONIBILIDAD
-                <small>Ver fechas y horarios disponibles</small>
+
+            <span class="icono-disponibilidad" aria-hidden="true">
+                🗓️
             </span>
-            <span aria-hidden="true" style="margin-left:auto;font-size:20px;">↗</span>
+
+            <span class="texto-disponibilidad">
+
+                CONSULTAR DISPONIBILIDAD
+
+                <small>
+                    Ver fechas y horarios disponibles
+                </small>
+
+            </span>
+
+            <span aria-hidden="true" style="margin-left:auto;font-size:20px;">
+                ↗
+            </span>
+
         </a>
+
 
         <!-- FECHA -->
 
@@ -535,22 +587,35 @@ button:disabled {
         </div>
 
 
-        <!-- TAREA -->
+        <!-- =================================================
+             TAREA - NOMBRE DEL CLIENTE
+        ================================================== -->
 
         <div class="campo">
 
             <label for="tarea">
 
                 <span class="obligatorio">*</span>
-                TAREA
+                TAREA - NOMBRE DEL CLIENTE
 
             </label>
 
             <input
                 type="text"
                 id="tarea"
-                placeholder="Escriba el motivo de la cita"
+                placeholder="Ej.: Reunión - Juan Pérez"
+                aria-describedby="ayudaTarea"
                 required>
+
+            <small class="ayuda-tarea" id="ayudaTarea">
+
+                Especifique el tipo de tarea y el nombre del cliente.
+
+                <span class="ejemplo-tarea">
+                    Ejemplo: Reunión - Juan Pérez
+                </span>
+
+            </small>
 
         </div>
 
@@ -695,7 +760,7 @@ async function enviarCita() {
         /* =============================================
            POWER AUTOMATE
 
-           MISMO LINK QUE TENÍAS
+           MISMO LINK ORIGINAL
         ============================================= */
 
         const respuesta =
