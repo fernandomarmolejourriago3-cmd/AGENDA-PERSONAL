@@ -373,6 +373,69 @@ button:disabled {
 
 
 /* =====================================================
+   BOTÓN PARA CONFIRMACIÓN DE CITAS
+===================================================== */
+
+.btn-confirmacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    width: 100%;
+    min-height: 54px;
+    margin: -10px 0 25px;
+    padding: 13px 18px;
+    border: 1px solid #c5e4ca;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #effaf0, #def2e1);
+    color: #256b2b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    box-shadow: 0 5px 14px rgba(46, 125, 50, .09);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn-confirmacion:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #def2e1, #cce9d0);
+    box-shadow: 0 8px 18px rgba(46, 125, 50, .16);
+}
+
+.btn-confirmacion:focus-visible {
+    outline: 3px solid rgba(76, 175, 80, .3);
+    outline-offset: 3px;
+}
+
+.btn-confirmacion .icono-confirmacion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border-radius: 9px;
+    background: #388e3c;
+    color: #fff;
+    font-size: 17px;
+}
+
+.btn-confirmacion .texto-confirmacion {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+}
+
+.btn-confirmacion small {
+    color: #527b56;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* =====================================================
    MENSAJE
 ===================================================== */
 
@@ -510,6 +573,33 @@ button:disabled {
                     Ver fechas y horarios disponibles
                 </small>
 
+            </span>
+
+            <span aria-hidden="true" style="margin-left:auto;font-size:20px;">
+                ↗
+            </span>
+
+        </a>
+
+        <!-- ACCESO A CONFIRMACIÓN DE CITAS -->
+
+        <a
+            class="btn-confirmacion"
+            href="https://fernandomarmolejourriago3-cmd.github.io/confirmacioncitas/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir la página de confirmación de citas en una nueva pestaña">
+
+            <span class="icono-confirmacion" aria-hidden="true">
+                ✓
+            </span>
+
+            <span class="texto-confirmacion">
+                CONFIRMACIÓN
+
+                <small>
+                    Consultar y gestionar la confirmación de citas
+                </small>
             </span>
 
             <span aria-hidden="true" style="margin-left:auto;font-size:20px;">
